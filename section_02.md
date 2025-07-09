@@ -1,3 +1,24 @@
-select 1 + 1 result
+# Section 2. Starting SQL Server
 
-#aoeu
+SELECT 1 + 1 RESULT
+
+
+
+
+SELECT 1 + 1 AS result
+
+SELECT 1 * 1 AS result
+
+
+
+
+SELECT 1 + 1 AS result
+go
+SELECT 1 * 1 AS result
+go
+SELECT 1/0 AS result
+
+
+
+
+
