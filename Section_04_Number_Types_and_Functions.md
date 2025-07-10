@@ -1,90 +1,74 @@
 use [3089-Burton]
 Go
 
-#### 25. Creating an Employee table
+# 25. Creating an Employee table
 
 Create table tblEpmloyee
 (EmployeeNumber int, EmployeeName int)
 
-#### 27. Creating temporary variables
-declare @myvar as int = 2
-select @myvar
+# 27. Creating temporary variables
+-- method 1
+
+DECLARE @myvar AS INT = 2
+SELECT @myvar
+
+-- method 2
+
+DECLARE @myVar AS INT
+SET @myVar = 3
+SELECT @myVar
 
 **note: must run them in one batch**
 
-declare @myvar as int = 2
-
-set @myvar = 3
-
-select @myvar
+DECLARE @myvar AS INT = 2
+SELECT @myvar AS myVariable
 
 ---
 
-declare @myvar as int = 2
+DECLARE @myvar AS INT = 2
+SET @myvar = 3
+SELECT @myvar AS myVariable
 
-set @myvar = @myvar + 1
+---
+
+DECLARE @myvar AS INT = 2
+SET @myvar = @myvar + 1
+SELECT @myvar AS myVariable
 
 ---
 
-declare @myvar as int = 2
-
-set @myvar = myvar * 1
-
-select @myvar as myVariable 
-
-select @myvar
+DECLARE @myvar AS INT = 2
+SET @myvar = @myvar*4 + 1
+SELECT @myvar AS myVariable
 
 ---
-declare @myvar as int = 2
 
-set @myvar = 2.5
-
-select @myvar as myVariable 
-
-** note that 2.3 is truncated to whole number **
+DECLARE @myvar AS INT = 2
+SET @myvar = 2.5
+SELECT @myvar AS myVariable
 
 --
-declare @myvar as int = 2
 
-set @myvar = -2.01
+DECLARE @myvar AS INT = 2
+SET @myvar = - 2.5
+SELECT @myvar AS myVariable
 
-select @myvar as myVariable 
+**INT datatype truncates the decimals, that is it always round towards zero**
 
----
 
-declare @myvar as tinyint = 2
-
-set @myvar = @myvar + 1
-
-select @myvar as myVariable 
+# 28. Interger numbers
+DECLARE @myvar AS TINYINT = 2
 
 ---
 
-declare @myvar as tinyint = 2
-
-set @myvar = @myvar - 2
-
-select @myvar as myVariable 
+DECLARE @myvar AS TINYINT = 2
+SET @myvar = @myvar -2
+SELECT @myvar AS myVariable
 
 ---
 
-declare @myvar as tinyint = 2
-
-set @myvar = @myvar - 3
-
-select @myvar as myVariable 
-
-tinyint can not go negative
----
-**smallint, int and big int are signed, meaning that they can go to negative. While tiny int is unsigned, meaning it can not go to negative**
-declare @myvar as smallint = 2
-
-set @myvar = @myvar - 3
-
-select @myvar as myVariable 
-
-**smallint to go negative**
+DECLARE @myvar AS TINYINT = 2
+SET @myvar = @myvar -3
+SELECT @myvar AS myVariable
 
 ---
-
-
