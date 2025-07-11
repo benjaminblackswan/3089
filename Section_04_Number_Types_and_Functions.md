@@ -196,3 +196,120 @@ select round(@myvar,-1)
 
 ---
 select pi() as myPI
+select exp(1) as e
+
+---
+Declare @myvar as numeric(7,2) = 456
+select abs(@myvar), sign(@myvar)
+
+---
+Declare @myvar as numeric(7,2) = -456
+select abs(@myvar), sign(@myvar)
+
+---
+Declare @myvar as numeric(7,2) = 0
+select abs(@myvar), sign(@myvar)
+
+---
+select rand()
+
+---
+
+# Coding Exercise 4: Mathematical functions
+Write T-SQL queries to solve the following mathematical operations and retrieve the results:
+
+    Find the result of 4 cubed (raised to the power of 3). Please name the result Result1.
+
+    Round down the value of PI to the nearest integer. Please name the result Result2.
+
+    Round up the value of PI to the nearest integer. Please name the result Result3.
+
+Please end each SELECT statement with a semicolon.
+
+If you can't remember which functions to use, please try a couple of times. You will then see hints, which should help you.
+
+---
+SELECT  power(4,3)    AS Result1;
+
+SELECT  round(pi(),0)    AS Result2;
+
+SELECT  ceiling(pi())    AS Result3;
+
+---
+
+# 33. Converting between number types
+
+select 3/2 **this will return an integer because both numerator and denominator are integers**
+
+---
+select 3.0/2
+
+---
+select 3/2.0
+
+---
+-- implicit conversion
+declare @myvar as decimal(5,2) = 3
+select @myvar
+
+---
+-- explicit conversion
+select convert(decimal(5,2), 3)/2
+
+---
+select cast(3 as decimal(5,2))/2
+
+---
+select convert(decimal(5,2),1000)
+
+---
+select convert(int,12.345)
+
+---
+select convert(int,12.345) + convert(int, 12.7)
+
+---
+
+# Practice Activity Number 4
+
+Enter the following SQL code:
+
+        select system_type_id, column_id, system_type_id / column_id as Calculation
+        from sys.all_columns
+
+Please try the following questions. If you need a hint, then there is a hint document attached to these questions.
+
+    Have a look at the Calculation column. What is wrong with it? Please correct it.
+
+    Please round the fractions in the Calculation column down to the next whole number (so 4.153 would round down to 4).
+
+    Please round the fractions up (so 4.153 would round up to 5).
+
+    Please round the fractions to the nearest one decimal place (so 4.153 would round up to 4.2).
+
+    Multiply the first field, system_type_id, by 2, and then convert it to a tiniyint. If it doesn't work, instead of converting it using CONVERT or CAST, use the functions TRY_CONVERT or TRY_CAST instead - these give a NULL if the conversion doesn't work properly.
+
+---
+
+select system_type_id
+, column_id
+, floor(system_type_id*1.000 / column_id *1.000) as Calculation
+from sys.all_columns
+
+select system_type_id
+, column_id
+, ceiling(system_type_id*1.000 / column_id *1.000) as Calculation
+from sys.all_columns
+
+select system_type_id
+, column_id
+, round(system_type_id*1.000 / column_id *1.000, 1) as Calculation
+from sys.all_columns
+
+select system_type_id
+, convert(tinyint, system_type_id * 2) as Calculation
+from sys.all_columns
+
+select system_type_id
+, try_convert(tinyint, system_type_id * 2) as Calculation
+from sys.all_columns
