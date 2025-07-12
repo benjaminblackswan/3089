@@ -222,3 +222,79 @@ SELECT LEFT(@mychar1 + @mychar2, 2)
 What is the result?
 
 Answer: NULL 
+
+# 41. Joining a string to a number
+**this will work because the number is quotation mark**
+select 'My number is: ' + '4567'
+
+---
+**this will not work because you can not join string to number**
+select 'My number is: ' + 4567
+
+---
+select 'My number is: ' + convert(varchar(20),4567)
+select 'My number is: ' + cast(4567 as varchar(20))
+
+---
+select 'My salary is: ' + convert(varchar(20),2345)
+select 'My salary is: $' + convert(varchar(20),2345.6)
+
+select 'My salary is: ' + format(2345.6, 'C')
+select 'My salary is: ' + format(2345.6, 'C', 'en-GB')
+select 'My salary is: ' + format(2345.6, 'C', 'fr-FR')
+
+# 42. Practice Activity Number 5
+
+Create the following T-SQL query:
+
+    select [name]
+    from sys.all_columns
+
+Please try the following questions. If you need a hint, then there is a hint document attached to these questions.
+
+1. Add the letter A to the end of each name.
+2. Add the letter Ⱥ to the end of each name. (You may want to copy and paste this letter, as it is an A with a stroke through it). If you are getting question marks, then give it another try.
+3. Remove the first character from name.
+4. Remove the last original character from name.
+
+---
+select [name] + 'A'
+, [name] + N'Ⱥ'
+, len(name) length
+, substring(name, 2, len(name) -1)
+, substring(name, 1, len(name) -1)
+from sys.all_columns
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
