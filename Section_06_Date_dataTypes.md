@@ -130,40 +130,16 @@ select parse('Thursday, 25 June 2015' as date) as MyConvertedDate
 select parse('Jueves, 25 de junio de 2015' as date using 'es-ES') as MyConvertedDateSpanish
 
 ---
+select format(cast('2025-06-25 01:59:03.456' as datetime),'D') as myFormattedLongDate
+select format(cast('2025-06-25 01:59:03.456' as datetime),'d') as myFormattedShortDate
 
+---
+select format(cast('2025-06-25 01:59:03.456' as datetime),'dd-MM-yyyy') as myFormattedBritishDate
 
+**note: the MM must be in capitalised, otherwise it will take minutes value**
+<img width="1034" height="343" alt="image" src="https://github.com/user-attachments/assets/bfcb17ed-4f76-43fa-a61a-ed0035df74ed" />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+---
+select format(cast('2025-06-25 01:59:03.456' as datetime),'D', 'es-ES') as myFormattedSpanish
+select format(cast('2025-06-25 01:59:03.456' as datetime),'D', 'de-DE') as myFormattedGerman
+select format(cast('2025-06-25 01:59:03.456' as datetime),'D', 'zh-CN') as myFormattedChinese
