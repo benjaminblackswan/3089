@@ -62,7 +62,7 @@ select @myChar as myString
 
 <img width="326" height="98" alt="image" src="https://github.com/user-attachments/assets/2212ca34-33b9-4c16-bfd4-29ee4ae825ae" />
 
-**data type must be nchar or nvarchar, and the string must have N before it**
+**data type must be nchar or nvarchar, and the string must have CAPITAL N before it**
 
 declare @myChar as nvarchar(10)
 set @myChar = N'hello☻'
@@ -73,3 +73,152 @@ select @myChar as myString
 <img width="319" height="122" alt="image" src="https://github.com/user-attachments/assets/c5c3d46f-918a-4e5a-b1fc-9744f9fe11a2" />
 
 **now you get the smiley face in the result**
+
+# Quiz 10. String
+
+Question 1:
+Which of these is a valid NVARCHAR(10) string?
+
+Answer: N'hello'
+
+---
+Question 2:
+DECLARE @myvariable NVARCHAR(20) = N'hello'
+How many bytes are used in N'hello'?
+
+Answer: 12
+5*2 + 2 = 12
+
+# 37. String Functions - extraction
+**remember to use Windows' Character Map app to input unicode characters**
+
+declare @chrAscii as varchar(10) = 'hellothere'
+declare @chrUnicode as nvarchar(10) = N'hello☻'
+
+select	left(@chrAscii, 2) as myAscii
+	,	right(@chrUnicode, 2) as myUnicode
+	,	substring(@chrAscii, 3, 2) as middleletters
+
+ ---
+declare @chrAscii as varchar(10) = '   hello   '
+declare @chrUnicode as nvarchar(10) = N'hello☻'
+
+select	ltrim(@chrAscii) as left_trimed
+	,	rtrim(@chrAscii) as right_trimed
+	,	ltrim(rtrim(@chrAscii)) as both_trimed
+	,	trim(@chrAscii) as left_trimedv2
+
+**Note that in SQL Server 2017 and later, you can use TRIM instead of ltrim(rtrim(@chrAscii))**
+https://learn.microsoft.com/en-us/sql/t-sql/functions/trim-transact-sql?view=sql-server-ver17
+
+---
+declare @chrAscii as varchar(10) = '   hello   '
+declare @chrUnicode as nvarchar(10) = N'hello☻'
+
+select	replace(@chrAscii, 'l', 'L') as myReplacement
+	,	upper(@chrAscii) as myUpper
+	,	lower(@chrAscii) as myLower
+
+ ---
+ # Quiz 11: String Functions Extraction
+ 
+Question 1:
+DECLARE @myvar VARCHAR(10) = 'HELLO'
+What function will give the answer 'LL'?
+ 
+Answer: select substring(@myvar, 3, 2)
+
+---
+Question 2:
+True or False?
+RTRIM will remove all the spaces at the beginning and end of a string.
+
+Answer:False
+
+---
+
+# 39. Null - an introduction
+
+declare @myvar as int
+select @myvar as myCol
+
+---
+declare @mystring as nvarchar(20)
+select datalength(@mystring) as myString
+
+---
+declare @mydecimal decimal(5,2)
+select convert(decimal(5,2),1000)
+select cast(1000 as decimal(5,2))
+
+---
+declare @mydecimal decimal(5,2)
+select try_convert(decimal(5,2),1000)
+select try_cast(1000 as decimal(5,2))
+
+---
+select try_convert(decimal(5,2), [fieldname])
+from tblTable
+
+---
+
+
+# 40. Joining two strings together
+declare @firstname as nvarchar(20)
+declare @middlename as nvarchar(20)
+declare @lastname as nvarchar(20)
+
+set @firstname = 'Sarah'
+set @lastname = 'Milligan'
+
+select @firstname + ' ' + @middlename + ' ' + @lastname
+
+---
+declare @firstname as nvarchar(20)
+declare @middlename as nvarchar(20)
+declare @lastname as nvarchar(20)
+
+set @firstname = 'Sarah'
+set @lastname = 'Milligan'
+
+select @firstname + iif(@middlename is null, '',' ' + @middlename) +
+					' ' + @lastname as Fullname
+
+---
+declare @firstname as nvarchar(20)
+declare @middlename as nvarchar(20)
+declare @lastname as nvarchar(20)
+
+set @firstname = 'Sarah'
+--set @middlename = 'Jane'
+set @lastname = 'Milligan'
+
+select @firstname + iif(@middlename is null, '',' ' + @middlename) +
+					' ' + @lastname as Fullname
+	, @firstname + Case When @middlename is null
+							then ''
+						else ' ' + @middlename
+					end
+				+ ' ' + @lastname as fullname_v2
+	, @firstname + coalesce(' ' + @middlename, '') + ' ' + @lastname as Fullname_v3
+	, concat(@firstname, ' ' + @middlename, ' ', @lastname) as Fullname_v4
+
+---
+
+# Quiz 12. Null
+
+Question 1: 
+DECLARE @myint AS int
+SELECT @myint
+What is the result?
+
+answer: NULL
+
+Question 2:
+
+DECLARE @mychar1 as NVARCHAR(10) = N'hello'
+DECLARE @mychar2 as NVARCHAR(10)
+SELECT LEFT(@mychar1 + @mychar2, 2)
+What is the result?
+
+Answer: NULL 
