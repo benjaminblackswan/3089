@@ -17,4 +17,86 @@ select year(Dateofbirth) as YearofBirth, count(*) as number_born
 from tblEmployee
 group by year(Dateofbirth)
 
+**can not use alias in group by statement**
+
 ---
+**returned result is not deterministic, to guarantee use order by**
+
+select year(Dateofbirth) as YearofBirth, count(*) as number_born
+from tblEmployee
+where 1=1
+group by year(Dateofbirth)
+order by year(Dateofbirth)
+
+## Quiz 19: Summarising and ordering data
+
+I'm counting the number of people born by year. What is needed in the GROUP BY?
+
+    SELECT year(DateOfBirth) as YearOfDateOfBirth, count(*) as NumberBorn FROM tblEmployee
+
+> quote
+>
+
+Use `git status` to list all new or modified files that haven't yet been committed.
+    
+
+Some basic Git commands are: backtick method
+
+```
+git status
+git add
+git commit
+```
+
+
+Some basic Git commands are: tab method
+
+  git status
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
