@@ -89,3 +89,131 @@ The last line then retrieves all of the data. It should include this new row.
 INSERT into SportTeams
 Values (23, 'Wolf FC', 2, 3);
 SELECT * FROM SportTeams
+
+## 58. SELECTing only part of a table - strings
+
+**inserting multiple rows in one go**
+
+insert into [dbo].[tblEmployee]
+values (1, 'Dylan', 'A', 'Word', 'HN513777D', '19920914', 'Customer Relations')
+	 , (2, 'Jossef', 'H', 'Wright', 'TX593671R', '19711224', 'Litigation')
+
+**copy and paste data from 70-461datau excel, there are 1003 rows, plus the four already in the tblEmployees, this should give you 1007 rows**
+
+**select all Employees with surname Word**
+select * from [dbo].[tblEmployee]
+where EmployeeLastName = 'Word'
+**returns 3 rows**
+
+---
+select * from [dbo].[tblEmployee]
+where EmployeeLastName <> 'Word'
+**returns 1004 rows**
+
+---
+select * from [dbo].[tblEmployee]
+where EmployeeLastName != 'Word'
+**same as above**
+
+---
+select * from [dbo].[tblEmployee]
+where EmployeeLastName like 'W%'
+**returns 16**
+
+---
+select * from [dbo].[tblEmployee]
+where EmployeeLastName like '%W'
+**returns 16**
+
+---
+select * from [dbo].[tblEmployee]
+where EmployeeLastName like '%W%'
+**returns 73**
+
+---
+select * from [dbo].[tblEmployee]
+where EmployeeLastName like '_W%'
+
+---
+**begin with r, s or t, two ways**
+select * from [dbo].[tblEmployee]
+where EmployeeLastName like '[rst]%'
+
+select * from [dbo].[tblEmployee]
+where EmployeeLastName like '[r-t]%'
+
+---
+**not with r, s or t, two ways**
+select * from [dbo].[tblEmployee]
+where EmployeeLastName like '[^rst]%'
+
+select * from [dbo].[tblEmployee]
+where EmployeeLastName like '[^r-t]%'
+
+---
+**starting with a %**
+select * from [dbo].[tblEmployee]
+where EmployeeLastName like '[%]%'
+
+## Coding Exercise 7: SELECTing only part of a table - strings
+In this coding exercise, we'll have a look at using a WHERE clause with strings.
+
+There is a table called SportTeams with the following columns: TeamID, TeamName, Attack and Defense.
+
+Please write a SELECT statement which retrieves all rows where the TeamName includes "town". It could be at the beginning, middle, or end of the TeamName.
+
+If you have any problems, you will get hints after two incorrect attempts.
+
+SELECT *
+FROM SportTeams
+where TeamName like '%town%'
+
+---
+## 59. SELECTing only part of a table - numbers
+
+select * from [dbo].[tblEmployee]
+where employeeNumber > 200
+**925 returned**
+
+---
+select * from [dbo].[tblEmployee]
+where not employeeNumber > 200
+**82 returned**
+
+**additional methods of negating**
+select * from [dbo].[tblEmployee]
+where not (employeeNumber > 200)
+
+select * from [dbo].[tblEmployee]
+where not employeeNumber !> 200
+
+---
+**between**
+select * from [dbo].[tblEmployee]
+where employeeNumber >=200 and  employeeNumber <=209
+
+**returns 10**
+
+select * from [dbo].[tblEmployee]
+where not( employeeNumber >=200 and  employeeNumber <=209 )
+
+**returns 997**
+
+---
+select * from [dbo].[tblEmployee]
+where employeeNumber < 200 or  employeeNumber > 209
+
+**returns 997**
+
+---
+select * from [dbo].[tblEmployee]
+where employeeNumber between 200 and 209
+
+---
+select * from [dbo].[tblEmployee]
+where employeeNumber not between 200 and 209
+
+**returns 997**
+
+---
+
