@@ -216,4 +216,15 @@ where employeeNumber not between 200 and 209
 **returns 997**
 
 ---
+select * from [dbo].[tblEmployee]
+where employeeNumber in (200, 204, 208)
+**returns 3**
 
+## Coding Exercise 8: SELECTing only part of a table - numbers
+In this coding exercise, we'll have a look at using a WHERE clause with numbers.
+There is a table called SportTeams with the following columns: TeamID, TeamName, Attack and Defense.
+Please write a SELECT statement which retrieves all columns for the rows where the Attack is greater than or equal to 7.
+
+SELECT *
+FROM SportTeams
+where attack >=7
