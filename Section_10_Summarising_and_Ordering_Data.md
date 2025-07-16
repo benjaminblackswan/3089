@@ -34,24 +34,6 @@ I'm counting the number of people born by year. What is needed in the GROUP BY?
 
     SELECT year(DateOfBirth) as YearOfDateOfBirth, count(*) as NumberBorn FROM tblEmployee
 
-> quote
->
-
-Use `git status` to list all new or modified files that haven't yet been committed.
-    
-
-Some basic Git commands are: backtick method
-
-```
-git status
-git add
-git commit
-```
-
-
-Some basic Git commands are: tab method
-
-  git status
 
 
 
