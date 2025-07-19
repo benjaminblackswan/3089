@@ -265,9 +265,60 @@ Order by datepart(month, DateOfBirth)
 ```
 
 ---
+```
+select datename(month, DateOfBirth) as MonthName
+, count(*) as NumberEmployees
+, count(EmployeeMiddleName) as NumberofMiddleNames
+, count(*) - count(EmployeeMiddleName) as NumberWithNoMiddleNames
+from [dbo].[tblEmployee]
+Group by datename(month, DateOfBirth), datepart(month, DateOfBirth)
+Order by datepart(month, DateOfBirth)
+```
 
+---
+**adding min and max DOB**
+```
+select datename(month, DateOfBirth) as MonthName
+, count(*) as NumberEmployees
+, count(EmployeeMiddleName) as NumberofMiddleNames
+, count(*) - count(EmployeeMiddleName) as NoMiddleNames
+, min(DateofBirth) as EarliestDOB
+, max(DateofBirth) LatestDOB
+from [dbo].[tblEmployee]
+Group by datename(month, DateOfBirth), datepart(month, DateOfBirth)
+Order by datepart(month, DateOfBirth)
+```
 
+---
+**with formatted dates**
+```
+select datename(month, DateOfBirth) as MonthName
+, count(*) as NumberEmployees
+, count(EmployeeMiddleName) as NumberofMiddleNames
+, count(*) - count(EmployeeMiddleName) as NoMiddleNames
+, format(min(DateofBirth), 'D') as EarliestDOB
+, format(max(DateofBirth), 'D') as LatestDOB
+from [dbo].[tblEmployee]
+Group by datename(month, DateOfBirth), datepart(month, DateOfBirth)
+Order by datepart(month, DateOfBirth)
+```
+<img width="804" height="289" alt="image" src="https://github.com/user-attachments/assets/caa76c2d-36f1-4b59-9e97-449f862ae526" />
 
+---
+**a different format**
+```
+select datename(month, DateOfBirth) as MonthName
+, count(*) as NumberEmployees
+, count(EmployeeMiddleName) as NumberofMiddleNames
+, count(*) - count(EmployeeMiddleName) as NoMiddleNames
+, format(min(DateofBirth), 'dd/MM/yyyy') as EarliestDOB
+, format(max(DateofBirth), 'D') as LatestDOB
+from [dbo].[tblEmployee]
+Group by datename(month, DateOfBirth), datepart(month, DateOfBirth)
+Order by datepart(month, DateOfBirth)
+```
+
+---
 
 
 
