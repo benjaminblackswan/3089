@@ -222,7 +222,49 @@ This will change blank Middle Names to NULL Middle names.
 
 ---
 
+## 63. Exercise
+```
+select datepart(month, DateOfBirth) as MonthNumber
+, count(*) as NumberEmployees
+from [dbo].[tblEmployee]
+Group by datepart(month, DateOfBirth)
+```
+<img width="241" height="256" alt="image" src="https://github.com/user-attachments/assets/315861ee-7e25-489e-bf29-22f069e5f204" />
 
+---
+```
+select datename(month, DateOfBirth) as MonthName
+, count(*) as NumberEmployees
+from [dbo].[tblEmployee]
+Group by datename(month, DateOfBirth)
+Order by datename(month, DateOfBirth)
+```
+<img width="222" height="255" alt="image" src="https://github.com/user-attachments/assets/14331c6e-7eac-4a63-a559-c1741540a622" />
+
+**this gives MonthName order alphebetically**
+
+---
+```
+select datename(month, DateOfBirth) as MonthName
+, count(*) as NumberEmployees
+from [dbo].[tblEmployee]
+Group by datename(month, DateOfBirth)
+Order by datepart(month, DateOfBirth)
+```
+
+**this will not work because Order by datepart(month, DateOfBirth) is not part of the SELECT or GROUP BY statement**
+
+**if you put into GROUNP BY, then it will not show up as an extra column and you can you still order it in the ORDER BY statement.**
+
+```
+select datename(month, DateOfBirth) as MonthName
+, count(*) as NumberEmployees
+from [dbo].[tblEmployee]
+Group by datename(month, DateOfBirth), datepart(month, DateOfBirth)
+Order by datepart(month, DateOfBirth)
+```
+
+---
 
 
 
