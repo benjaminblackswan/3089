@@ -101,3 +101,222 @@ WHERE T.ID < 1000
 A: On
 
 ---
+
+## 69. Different types of JOIN
+```
+select tblEmployee.EmployeeNumber
+, EmployeeFirstName
+, EmployeeLastName
+, sum(amount) as SumAmount
+from tblEmployee
+left join tblTransaction
+on tblEmployee.EmployeeNumber = tblTransaction.EmployeeNumber
+group by tblEmployee.EmployeeNumber
+, EmployeeFirstName
+, EmployeeLastName
+order by EmployeeNumber
+```
+
+## Coding Exercise 12: The FROM clause - connecting to two tables
+
+Let's expand our code by joining two tables.
+
+Can you write a SELECT statement which joins together SportTeams and SportGoals. The INNER JOIN should be done using the two columns highlighted in bold below:
+
+* SportTeams - TeamID should join with
+* SportGoals - Team.
+
+Please retrieve the following columns:
+
+* SportTeams - TeamID and TeamName, and
+* SportGoals - Goals and Points.
+
+
+```
+select TeamID, TeamName, Goals, Points
+from SportTeams
+inner join SportGoals
+on TeamID = Team
+```
+
+## Quiz 22: Different types of JOIN
+
+Will these two SELECT statements evaluate the same?
+
+Select * from tblFirst LEFT JOIN tblSecond ON ...
+
+Select * from tblSecond RIGHT JOIN tblFirst ON ...
+
+
+**Answer: True**
+
+---
+What is the JOIN type in the statement below?
+
+Select * from tblFirst JOIN tblSecond ...
+
+
+**answer: inner join**
+
+---
+There is an optional word in the below statement. Please fill it in:
+
+Select * from tblFirst LEFT ____ JOIN tblSecond ON ...
+
+**answer: outer**
+
+## 70. Creating a third table
+
+```
+select department from
+(
+select department
+, count(*) as Number
+from tblEmployee
+group by department
+) as newtable
+```
+
+---
+```
+select count(department) as NumberOfDepartment
+from
+(
+select department
+, count(*) as Number
+from tblEmployee
+group by department
+) as newtable
+```
+
+---
+select distinct department
+from tblEmployee
+
+---
+select distinct department, [EmployeeGovID]
+from tblEmployee
+
+---
+select distinct Department
+, '' as DepartmentHead
+from tblEmployee
+
+---
+select distinct Department
+, '' as DepartmentHead
+into tblDepartment
+from tblEmployee
+select * from [dbo].[tblDepartment]
+
+**note: the SELECT ... INTO ... FROM... statement creates a new table, it can not be used to insert into existing table.**
+
+---
+**however the DepartmentHead column is char(1), so we need to drop it and recreate it has varchar(20) with the following code.**
+```
+drop table tblDepartment
+```
+
+```
+select distinct Department
+, convert(varchar(30), N'') as DepartmentHead
+into tblDepartment
+from tblEmployee
+```
+
+## 71. JOINing three tables
+```
+select *
+from tblDepartment
+join tblEmployee
+on tblDepartment.Department = tblEmployee.department
+join tblTransaction
+on tblEmployee.EmployeeNumber = tblTransaction.EmployeeNumber
+```
+
+```
+select *
+from tblDepartment
+left join tblEmployee
+on tblDepartment.Department = tblEmployee.department
+left join tblTransaction
+on tblEmployee.EmployeeNumber = tblTransaction.EmployeeNumber
+```
+
+---
+```
+select tblDepartment.Department, sum(amount) as SumOfAmount
+from tblDepartment
+left join tblEmployee
+on tblDepartment.Department = tblEmployee.department
+left join tblTransaction
+on tblEmployee.EmployeeNumber = tblTransaction.EmployeeNumber
+group by tblDepartment.Department
+```
+
+---
+```
+insert into tblDepartment(Department, DepartmentHead)
+values ('Accounts', 'James')
+```
+
+---
+```
+select tblDepartment.Department, sum(amount) as SumOfAmount
+from tblDepartment
+left join tblEmployee
+on tblDepartment.Department = tblEmployee.department
+left join tblTransaction
+on tblEmployee.EmployeeNumber = tblTransaction.EmployeeNumber
+group by tblDepartment.Department
+```
+
+---
+**Edit top 200 of tblDepartment so that**
+
+<img width="288" height="150" alt="image" src="https://github.com/user-attachments/assets/09510329-f773-46c2-a546-3405391b6123" />
+
+```
+select tblDepartment.Department, DepartmentHead, sum(amount) as SumOfAmount
+from tblDepartment
+left join tblEmployee
+on tblDepartment.Department = tblEmployee.department
+left join tblTransaction
+on tblEmployee.EmployeeNumber = tblTransaction.EmployeeNumber
+group by tblDepartment.Department, DepartmentHead
+order by Department
+```
+
+---
+```
+select DepartmentHead, sum(amount) as SumOfAmount
+from tblDepartment
+left join tblEmployee
+on tblDepartment.Department = tblEmployee.department
+left join tblTransaction
+on tblEmployee.EmployeeNumber = tblTransaction.EmployeeNumber
+group by DepartmentHead
+order by DepartmentHead
+```
+
+---
+```
+select d.DepartmentHead, sum(T.Amount) as SumAmount
+from tblDepartment as D
+left join tblEmployee as E
+on D.Department = E.department
+left join tblTransaction as T
+on E.EmployeeNumber = T.EmployeeNumber
+group by DepartmentHead
+order by DepartmentHead
+```
+
+## Quiz 23: JOINing three tables
+
+Is this a correct SELECT statement for JOINING three tables:
+```
+SELECT * from tblFirst JOIN tblSecond JOIN tblThird
+ON tblFirst.ID = tblSecond.ID ON tblFirst.ID = tblThird.ID
+```
+
+**Answer: False**
