@@ -146,23 +146,21 @@ Where tblSecond.ID is NULL
 ```
 
 ## 73. Deleting data
+```
+begin transaction
 
+select count(*) from tblTransaction
 
-The background color is `#ffffff` for light mode and `#000000` for dark mode.
+delete tblTransaction
+from tblEmployee as E
+right join tblTransaction t
+on e.EmployeeNumber = t.EmployeeNumber
+where e.EmployeeNumber is null
 
+select count(*) from tblTransaction
 
-
-
-
-
-
-
-
-
-
-
-
-
+rollback transaction
+```
 
 
 
