@@ -161,10 +161,33 @@ select count(*) from tblTransaction
 
 rollback transaction
 ```
+---
+```
+begin transaction
+select count(*) from tblTransaction
 
+delete
+from tblTransaction
+where EmployeeNumber in
+(
+Select TransactNumber
+from(
+select E.EmployeeNumber as ENumber, E.EmployeeFirstName,
+		E.EmployeeLastName, T.EmployeeNumber as TransactNumber,
+		sum(T.Amount) as TotalAmount
+from tblEmployee as E
+right join tblTransaction as T
+on E.EmployeeNumber = T.EmployeeNumber
+group by E.EmployeeNumber, E.EmployeeFirstName,
+		E.EmployeeLastName, T.EmployeeNumber) as NewTable
+where ENumber is null)
 
+select count(*) from tblTransaction
+rollback transaction
+```
 
-
+## Quiz 25: Deleting data
+<img width="948" height="388" alt="image" src="https://github.com/user-attachments/assets/eac289ab-487d-4d54-aa92-2c4d9c985a9c" />
 
 
 
