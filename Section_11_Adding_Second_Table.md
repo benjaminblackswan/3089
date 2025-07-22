@@ -140,28 +140,27 @@ on TeamID = Team
 
 ## Quiz 22: Different types of JOIN
 
-```
 Will these two SELECT statements evaluate the same?
 
+```
 Select * from tblFirst LEFT JOIN tblSecond ON ...
+```
 
+```
 Select * from tblSecond RIGHT JOIN tblFirst ON ...
 ```
 
-
 **Answer: True**
 
----
-```
 What is the JOIN type in the statement below?
 
+```
 Select * from tblFirst JOIN tblSecond ...
-
-
+```
 
 **answer: inner join**
 
----
+
 There is an optional word in the below statement. Please fill it in:
 
 ```
@@ -182,7 +181,6 @@ group by department
 ) as newtable
 ```
 
----
 ```
 select count(department) as NumberOfDepartment
 from
@@ -194,25 +192,29 @@ group by department
 ) as newtable
 ```
 
----
+```
 select distinct department
 from tblEmployee
+```
 
----
+```
 select distinct department, [EmployeeGovID]
 from tblEmployee
+```
 
----
+```
 select distinct Department
 , '' as DepartmentHead
 from tblEmployee
+```
 
----
+```
 select distinct Department
 , '' as DepartmentHead
 into tblDepartment
 from tblEmployee
 select * from [dbo].[tblDepartment]
+```
 
 **note: the SELECT ... INTO ... FROM... statement creates a new table, it can not be used to insert into existing table.**
 
@@ -248,7 +250,6 @@ left join tblTransaction
 on tblEmployee.EmployeeNumber = tblTransaction.EmployeeNumber
 ```
 
----
 ```
 select tblDepartment.Department, sum(amount) as SumOfAmount
 from tblDepartment
@@ -259,13 +260,11 @@ on tblEmployee.EmployeeNumber = tblTransaction.EmployeeNumber
 group by tblDepartment.Department
 ```
 
----
 ```
 insert into tblDepartment(Department, DepartmentHead)
 values ('Accounts', 'James')
 ```
 
----
 ```
 select tblDepartment.Department, sum(amount) as SumOfAmount
 from tblDepartment
@@ -276,7 +275,6 @@ on tblEmployee.EmployeeNumber = tblTransaction.EmployeeNumber
 group by tblDepartment.Department
 ```
 
----
 **Edit top 200 of tblDepartment so that**
 
 <img width="288" height="150" alt="image" src="https://github.com/user-attachments/assets/09510329-f773-46c2-a546-3405391b6123" />
@@ -292,7 +290,6 @@ group by tblDepartment.Department, DepartmentHead
 order by Department
 ```
 
----
 ```
 select DepartmentHead, sum(amount) as SumOfAmount
 from tblDepartment
@@ -304,7 +301,6 @@ group by DepartmentHead
 order by DepartmentHead
 ```
 
----
 ```
 select d.DepartmentHead, sum(T.Amount) as SumAmount
 from tblDepartment as D
