@@ -189,11 +189,77 @@ rollback transaction
 ## Quiz 25: Deleting data
 <img width="948" height="388" alt="image" src="https://github.com/user-attachments/assets/eac289ab-487d-4d54-aa92-2c4d9c985a9c" />
 
+<img width="933" height="324" alt="image" src="https://github.com/user-attachments/assets/eccaae26-ef58-4eaa-9d08-e463e1277021" />
+
+<img width="925" height="554" alt="image" src="https://github.com/user-attachments/assets/12434c11-62ec-4b9f-9a7c-3e1bdfe90501" />
+
+## 74. Updating data
+```
+select * from tblEmployee where EmployeeNumber = 194
+select * from tblTransaction where EmployeeNumber = 3
+select * from tblTransaction where EmployeeNumber = 194
+```
+the transaction done by empNo. 3 should have been done by empNo. 194, therefore we need to update it
 
 
 
+```
+begin tran
+select * from tblTransaction where EmployeeNumber = 194
 
 
+--
+update tblTransaction
+set EmployeeNumber = 194
+from tblTransaction
+where EmployeeNumber = 3
+
+
+--
+select * from tblTransaction where EmployeeNumber = 194
+rollback tran
+
+```
+
+If you need to update multiple values, eg update all the empno. 3, 5, 7 and 9
+
+
+begin tran
+select * from tblTransaction where EmployeeNumber = 194
+
+
+--
+update tblTransaction
+set EmployeeNumber = 194
+from tblTransaction
+where EmployeeNumber in (3,5,7,9)
+
+
+--
+select * from tblTransaction where EmployeeNumber = 194
+rollback tran
+
+---
+
+To see what rows are deleted and inserted, use **output** keyword
+
+```
+begin tran
+
+update tblTransaction
+set EmployeeNumber = 194
+output inserted.*, deleted.*
+from tblTransaction
+where EmployeeNumber in (3,5,7,9) 
+
+rollback tran
+```
+
+## Quiz 26: Updating data
+
+<img width="982" height="393" alt="image" src="https://github.com/user-attachments/assets/57639746-4dcb-40d9-af2b-d761486b92ed" />
+
+<img width="921" height="473" alt="image" src="https://github.com/user-attachments/assets/f0d5608f-92c4-4746-a7c4-1e98cabcff13" />
 
 
 
