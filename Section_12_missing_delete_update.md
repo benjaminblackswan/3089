@@ -199,23 +199,19 @@ select * from tblEmployee where EmployeeNumber = 194
 select * from tblTransaction where EmployeeNumber = 3
 select * from tblTransaction where EmployeeNumber = 194
 ```
-the transaction done by empNo. 3 should have been done by empNo. 194, therefore we need to update it
 
+the transaction done by empNo. 3 should have been done by empNo. 194, therefore we need to update it
 
 
 ```
 begin tran
 select * from tblTransaction where EmployeeNumber = 194
 
-
---
 update tblTransaction
 set EmployeeNumber = 194
 from tblTransaction
 where EmployeeNumber = 3
 
-
---
 select * from tblTransaction where EmployeeNumber = 194
 rollback tran
 
@@ -223,10 +219,9 @@ rollback tran
 
 If you need to update multiple values, eg update all the empno. 3, 5, 7 and 9
 
-
+```
 begin tran
 select * from tblTransaction where EmployeeNumber = 194
-
 
 --
 update tblTransaction
@@ -234,12 +229,10 @@ set EmployeeNumber = 194
 from tblTransaction
 where EmployeeNumber in (3,5,7,9)
 
-
 --
 select * from tblTransaction where EmployeeNumber = 194
 rollback tran
-
----
+```
 
 To see what rows are deleted and inserted, use **output** keyword
 
