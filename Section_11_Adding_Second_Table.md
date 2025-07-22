@@ -100,7 +100,6 @@ WHERE T.ID < 1000
 
 A: On
 
----
 
 ## 69. Different types of JOIN
 ```
@@ -141,19 +140,23 @@ on TeamID = Team
 
 ## Quiz 22: Different types of JOIN
 
+```
 Will these two SELECT statements evaluate the same?
 
 Select * from tblFirst LEFT JOIN tblSecond ON ...
 
 Select * from tblSecond RIGHT JOIN tblFirst ON ...
+```
 
 
 **Answer: True**
 
 ---
+```
 What is the JOIN type in the statement below?
 
 Select * from tblFirst JOIN tblSecond ...
+
 
 
 **answer: inner join**
@@ -161,7 +164,9 @@ Select * from tblFirst JOIN tblSecond ...
 ---
 There is an optional word in the below statement. Please fill it in:
 
+```
 Select * from tblFirst LEFT ____ JOIN tblSecond ON ...
+```
 
 **answer: outer**
 
