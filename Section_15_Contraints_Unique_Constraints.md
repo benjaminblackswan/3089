@@ -139,10 +139,3 @@ drop table tbltransaction2
 <img width="841" height="322" alt="image" src="https://github.com/user-attachments/assets/e6d3c2e8-49b0-465b-92f7-0eebadcd245a" />
 
 <img width="846" height="390" alt="image" src="https://github.com/user-attachments/assets/d08bbfc2-e2f6-45fe-8149-9747074ca6fb" />
-
-
-## 84. Quiz 27: Unique constraints
-       
-## 84. Default constraints - what are they?
-       
-## 85. Default constraints in action
