@@ -84,10 +84,61 @@ and sql server also created an index.
 <img width="622" height="344" alt="image" src="https://github.com/user-attachments/assets/478ed793-42b4-48fe-9ff8-a169a355d39a" />
 
 
+### Constraints on multiple columns
+
+```
+alter table tblTransaction
+add constraint unqtransaction unique (Amount, DateOfTransaction, employeenumber);
+```
+<img width="404" height="178" alt="image" src="https://github.com/user-attachments/assets/29cfb969-9b14-43d1-a8af-e952e3f5eac8" />
+
+### lets test the contraint
+
+```
+delete from tblTransaction
+where EmployeeNumber = 131
+```
+
+```
+insert into tblTransaction
+values (1, '2015-01-01', 131)
+```
+
+### do the insert again
+
+<img width="860" height="115" alt="image" src="https://github.com/user-attachments/assets/26ee235e-d81f-4135-a967-9f955c409f4d" />
+
+### Drop a constraint
+
+```
+alter table tbltransaction
+drop constraint unqTransaction
+```
+
+### Create a table with Constraint in one step
+
+```
+Create table tbltransaction2
+(amount smallmoney not null
+, dateofTransaction smalldatetime not null
+, EmployeeNumber int not null
+, constraint unqTransaction2 unique (       Amount
+                                          , dateofTransaction
+                                          , EmployeeNumber)
+)
+```
+
+```
+drop table tbltransaction2
+```
+
+## Quiz 27: Unique constraints
+<img width="837" height="383" alt="image" src="https://github.com/user-attachments/assets/0b83d298-c4b2-422f-aba3-b391eb8abae3" />
 
 
+<img width="841" height="322" alt="image" src="https://github.com/user-attachments/assets/e6d3c2e8-49b0-465b-92f7-0eebadcd245a" />
 
-
+<img width="846" height="390" alt="image" src="https://github.com/user-attachments/assets/d08bbfc2-e2f6-45fe-8149-9747074ca6fb" />
 
 
 ## 84. Quiz 27: Unique constraints
