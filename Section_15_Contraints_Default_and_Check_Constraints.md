@@ -78,10 +78,18 @@ alter table tbltransaction
 drop column DateOfEntry;
 ```
 
-
+## Quiz 28: Default constraints
 
 <img width="956" height="373" alt="image" src="https://github.com/user-attachments/assets/554ce8e2-7cdf-4ba1-91b9-cea12dcf0826" />
 
+<img width="867" height="390" alt="image" src="https://github.com/user-attachments/assets/ce6f27af-e439-4203-9a7d-c88d70eaaa81" />
+
+<img width="826" height="422" alt="image" src="https://github.com/user-attachments/assets/d9fb067f-6d02-4ad4-af7e-768c5166ef33" />
+
+
+
+
+## 86. Check Constraints
 
 
 
@@ -98,5 +106,4 @@ drop column DateOfEntry;
 
 
 
-       
-## 85. Default constraints in action
+
