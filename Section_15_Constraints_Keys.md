@@ -93,7 +93,7 @@ scanning: when searching through a non-clustered primary key.
 
 <img width="1162" height="840" alt="image" src="https://github.com/user-attachments/assets/7ae97912-7b2b-4dce-9384-265c3e4d87ab" />
 
-The data type between fk and pk are be the same.
+The data type between fk and pk are be the identical.
 
 ```
 Alter table tblTransaction
@@ -108,6 +108,113 @@ Create PK constraint on tblEmployee first
 Alter table tblEmployee with nocheck
 Add constraint PK_tblEmployee primary key (EmployeeNumber)
 ```
+
+For testing purpose, lets do a simple join query.
+```
+select E.EmployeeNumber, T.*
+from tblEmployee as E
+right join tblTransaction as T
+on E.EmployeeNumber = T.EmployeeNumber
+where T.Amount in (-179.47, 786.22, -967.36, 957.03)
+```
+and this will return these four rows.
+
+<img width="408" height="110" alt="image" src="https://github.com/user-attachments/assets/1cb9ec6c-3a0b-4335-9b77-39e7dbf0cbac" />
+
+
+
+```
+Begin tran
+alter table tblTransaction alter column EmployeeNumber int null
+alter table tblTransaction add constraint DF_tblTransaction default 124 for EmployeeNumber
+alter table tblTransaction With NOCHECK
+add constraint FK_tblTransaction_EmployeeNumber Foreign key(EmployeeNumber)
+References tblEmployee(EmployeeNumber)
+
+select E.EmployeeNumber, T.*
+from tblEmployee as E
+right join tblTransaction as T
+on E.EmployeeNumber = T.EmployeeNumber
+where T.Amount in (-179.47, 786.22, -967.36, 957.03)
+
+Rollback tran
+```
+
+<img width="406" height="94" alt="image" src="https://github.com/user-attachments/assets/995bf310-88c3-4ade-a08a-4472100748c4" />
+
+
+```
+Begin tran
+alter table tblTransaction alter column EmployeeNumber int null
+alter table tblTransaction add constraint DF_tblTransaction default 124 for EmployeeNumber
+alter table tblTransaction With NOCHECK
+add constraint FK_tblTransaction_EmployeeNumber Foreign key(EmployeeNumber)
+References tblEmployee(EmployeeNumber)
+
+update tblEmployee Set EmployeeNumber = 9123 where EmployeeNumber = 123
+
+select E.EmployeeNumber, T.*
+from tblEmployee as E
+right join tblTransaction as T
+on E.EmployeeNumber = T.EmployeeNumber
+where T.Amount in (-179.47, 786.22, -967.36, 957.03)
+
+Rollback tran
+
+```
+
+We will get an error
+
+<img width="1030" height="63" alt="image" src="https://github.com/user-attachments/assets/1c487c48-86fe-4064-aad0-7c7b514cc74e" />
+
+We will need add `On update cascade`
+
+```
+Begin tran
+alter table tblTransaction alter column EmployeeNumber int null
+alter table tblTransaction add constraint DF_tblTransaction default 124 for EmployeeNumber
+alter table tblTransaction With NOCHECK
+add constraint FK_tblTransaction_EmployeeNumber Foreign key(EmployeeNumber)
+References tblEmployee(EmployeeNumber)
+
+on update cascade
+update tblEmployee Set EmployeeNumber = 9123 where EmployeeNumber = 123
+
+select E.EmployeeNumber, T.*
+from tblEmployee as E
+right join tblTransaction as T
+on E.EmployeeNumber = T.EmployeeNumber
+where T.Amount in (-179.47, 786.22, -967.36, 957.03)
+Rollback tran
+```
+
+<img width="401" height="101" alt="image" src="https://github.com/user-attachments/assets/83d7cb96-798e-487f-a0a3-deeaece042c5" />
+
+
+or you can set them to NULL
+
+```
+Begin tran
+alter table tblTransaction alter column EmployeeNumber int null
+alter table tblTransaction add constraint DF_tblTransaction default 124 for EmployeeNumber
+alter table tblTransaction With NOCHECK
+add constraint FK_tblTransaction_EmployeeNumber Foreign key(EmployeeNumber)
+References tblEmployee(EmployeeNumber)
+
+on update set null
+update tblEmployee Set EmployeeNumber = 9123 where EmployeeNumber = 123
+
+select E.EmployeeNumber, T.*
+from tblEmployee as E
+right join tblTransaction as T
+on E.EmployeeNumber = T.EmployeeNumber
+where T.Amount in (-179.47, 786.22, -967.36, 957.03)
+Rollback tran
+```
+
+<img width="448" height="101" alt="image" src="https://github.com/user-attachments/assets/58012c5f-e3ca-4b1f-bcd1-6814e8ffe30d" />
+
+
 
 
 
