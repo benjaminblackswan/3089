@@ -214,7 +214,17 @@ Rollback tran
 
 <img width="448" height="101" alt="image" src="https://github.com/user-attachments/assets/58012c5f-e3ca-4b1f-bcd1-6814e8ffe30d" />
 
+---
 
+## Quiz 31: Foreign Keys
+
+<img width="540" height="508" alt="image" src="https://github.com/user-attachments/assets/8a0d53dc-a5dd-4d23-aa22-cfb1cf28a1c5" />
+
+<img width="540" height="321" alt="image" src="https://github.com/user-attachments/assets/2a79f475-5eeb-41af-a96a-125d93ae46e6" />
+
+<img width="826" height="276" alt="image" src="https://github.com/user-attachments/assets/0d2fcb30-9ea5-4aec-8d7f-b72d81da1fd1" />
+
+<img width="830" height="278" alt="image" src="https://github.com/user-attachments/assets/d74074b7-c766-412f-988a-82583e184a07" />
 
 
 
